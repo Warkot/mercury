@@ -64,10 +64,10 @@ function outputResponse(request, reply, data, allowCache = true, code = 200) {
 		result = deepExtend(result, prepareMainPageData(data));
 		delete result.adsContext;
 		// @todo XW-596 we shouldn't rely on side effects of this function
-		Tracking.handleResponseCuratedMainPage(result, request);
+		Tracking.handleResponseCuratedMainPage(data,result, request);
 	} else {
 		// @todo XW-596 we shouldn't rely on side effects of this function
-		Tracking.handleResponse(result, request);
+		Tracking.handleResponse(data, result, request);
 	}
 
 	response = reply.view('article', result);

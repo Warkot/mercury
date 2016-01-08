@@ -43,13 +43,13 @@ export const Comscore = {
  * @param {Hapi.Request} request
  * @returns {void}
  */
-export function handleResponse(result, request) {
+export function handleResponse(data, result, request) {
 	const tracking = localSettings.tracking;
 
 	let vertical;
 
 	try {
-		vertical = result.article.adsContext.targeting.wikiVertical;
+		vertical = data.article.data.adsContext.targeting.wikiVertical;
 	} catch (error) {
 		Logger.error('No vertical set for response');
 
