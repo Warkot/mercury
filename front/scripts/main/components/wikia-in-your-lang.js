@@ -21,7 +21,8 @@ export default Ember.Component.extend(
 		 */
 		handleWikiaInYourLang() {
 			const userLang = this.getLanguage();
-			console.log('qqq userLang', userLang)l
+
+			console.log('qqq userLang', userLang);
 			if (this.shouldShowWikiaInYourLang(userLang)) {
 				console.log('qqq create model with userLang', userLang);
 				WikiaInYourLangModel.load(userLang)

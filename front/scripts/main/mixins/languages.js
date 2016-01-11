@@ -24,6 +24,7 @@ export default Ember.Mixin.create({
 	 */
 	getBrowserLanguage() {
 		let lang = navigator.language || navigator.browserLanguage;
+
 		if (!lang) {
 			return this.get('defaultLanguage');
 		} else {
