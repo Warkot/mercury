@@ -24,7 +24,6 @@ export default Ember.Mixin.create({
 	 */
 	getBrowserLanguage() {
 		let lang = navigator.language || navigator.browserLanguage;
-
 		if (!lang) {
 			return this.get('defaultLanguage');
 		} else {
@@ -34,7 +33,6 @@ export default Ember.Mixin.create({
 			if (lang !== 'pt-br') {
 				lang = lang.split('-')[0];
 			}
-
 			return lang;
 		}
 	},
@@ -45,8 +43,8 @@ export default Ember.Mixin.create({
 	 * @returns {string}
 	 */
 	getLanguage() {
-		if (this.get('currentUser', 'isAuthenticated')) {
-			return this.get('currentUser', 'language');
+		if (this.get('currentUser.isAuthenticated')) {
+			return this.get('currentUser.language');
 		} else {
 			return this.getBrowserLanguage();
 		}

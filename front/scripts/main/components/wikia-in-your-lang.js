@@ -20,8 +20,9 @@ export default Ember.Component.extend(
 		 * @returns {void}
 		 */
 		handleWikiaInYourLang() {
-			if (this.shouldShowWikiaInYourLang()) {
-				WikiaInYourLangModel.load()
+			const userLang = this.getLanguage();
+			if (this.shouldShowWikiaInYourLang(userLang)) {
+				WikiaInYourLangModel.load(userLang)
 					.then((model) => {
 						if (model) {
 							this.createAlert(model);
@@ -77,14 +78,14 @@ export default Ember.Component.extend(
 		/**
 		 * @returns {boolean}
 		 */
-		shouldShowWikiaInYourLang() {
+		shouldShowWikiaInYourLang(userLang) {
 			const value = window.localStorage.getItem(this.get('alertKey')),
 				now = new Date().getTime(),
 				/**
 				 * 2,592,000,000 = 30 days
 				 */
 				notDismissed = !value || (now - value > 2592000000),
-				notSameLanguage = this.isUserLangDifferentFromWikiLang();
+				notSameLanguage = this.isUserLangDifferentFromWikiLang(userLang);
 
 			return notDismissed && notSameLanguage;
 		},
@@ -92,9 +93,8 @@ export default Ember.Component.extend(
 		/**
 		 * @return {boolean}
 		 */
-		isUserLangDifferentFromWikiLang() {
-			const userLang = this.getBrowserLanguage(),
-				eligibleCountries = ['zh', 'ko', 'vi', 'ru', 'ja'];
+		isUserLangDifferentFromWikiLang(userLang) {
+			const eligibleCountries = ['zh', 'ko', 'vi', 'ru', 'ja'];
 			let isDifferent = false;
 
 			if (eligibleCountries.indexOf(userLang) !== -1) {

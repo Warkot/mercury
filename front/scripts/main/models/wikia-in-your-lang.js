@@ -9,9 +9,8 @@ WikiaInYourLangModel.reopenClass(LanguagesMixin, {
 	/**
 	 * @returns {Ember.RSVP.Promise}
 	 */
-	load() {
-		const browserLang = WikiaInYourLangModel.getBrowserLanguage(),
-			model = WikiaInYourLangModel.getFromCache(browserLang);
+	load(userLang) {
+		const model = WikiaInYourLangModel.getFromCache(userLang);
 
 		return new Ember.RSVP.Promise((resolve, reject) => {
 			if (model) {
@@ -25,7 +24,7 @@ WikiaInYourLangModel.reopenClass(LanguagesMixin, {
 					controller: 'WikiaInYourLangController',
 					method: 'getNativeWikiaInfo',
 					format: 'json',
-					targetLanguage: browserLang
+					targetLanguage: userLang
 				}
 			).done((resp) => {
 				let modelInstance = null;
@@ -39,7 +38,7 @@ WikiaInYourLangModel.reopenClass(LanguagesMixin, {
 
 				// write to cache
 				window.localStorage.setItem(
-					WikiaInYourLangModel.getCacheKey(browserLang),
+					WikiaInYourLangModel.getCacheKey(userLang),
 					JSON.stringify({
 						model: modelInstance,
 						timestamp: new Date().getTime()
@@ -54,11 +53,11 @@ WikiaInYourLangModel.reopenClass(LanguagesMixin, {
 	},
 
 	/**
-	 * @param {string} browserLang
+	 * @param {string} userLang
 	 * @returns {WikiaInYourLangModel}
 	 */
-	getFromCache(browserLang) {
-		const key = WikiaInYourLangModel.getCacheKey(browserLang),
+	getFromCache(userLang) {
+		const key = WikiaInYourLangModel.getCacheKey(userLang),
 			value = JSON.parse(window.localStorage.getItem(key)),
 			now = new Date().getTime();
 
