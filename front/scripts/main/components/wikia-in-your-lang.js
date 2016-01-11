@@ -21,7 +21,9 @@ export default Ember.Component.extend(
 		 */
 		handleWikiaInYourLang() {
 			const userLang = this.getLanguage();
+			console.log('qqq userLang', userLang)l
 			if (this.shouldShowWikiaInYourLang(userLang)) {
+				console.log('qqq create model with userLang', userLang);
 				WikiaInYourLangModel.load(userLang)
 					.then((model) => {
 						if (model) {
@@ -100,6 +102,7 @@ export default Ember.Component.extend(
 			if (eligibleCountries.indexOf(userLang) !== -1) {
 				isDifferent = userLang !== Ember.get(Mercury, 'wiki.language.content');
 			}
+			console.log('qqq isDifferent', isDifferent);
 			return isDifferent;
 		}
 	}
