@@ -57,7 +57,7 @@
 			<span id="share-{{post.id}}" class="toggle-share-area">
 				{{svg 'share' class='icon toggle-share'}}
 			</span>
-			{{#pop-over for=(concat "share-" post.id) on="click" flow="popup"}}
+			{{#pop-over for=(concat "share-" post.id) on="click" flow="flip"}}
 				Hey&nbsp;there!&nbsp;fsdgdfghdfhdfhdfhf ghgfhfg<br> there<br> there<br> there
 			{{/pop-over}}
 		{{/if}}
