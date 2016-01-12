@@ -46,8 +46,9 @@ export default Ember.Mixin.create({
 	getLanguage() {
 		console.log('qqq currentUser isAuthenticated', this.get('currentUser.isAuthenticated'));
 		if (this.get('currentUser.isAuthenticated')) {
-			console.log('qqq currentUser', this.get('currentUser'));debugger;
-			console.log('qqq currentUser.language', this.get('currentUser.language'));
+			console.log('qqq currentUser', this.get('currentUser'));
+			console.log('qqq currentUser.language!!!', this.get('currentUser.language'));
+			console.log('qqq currentUser, language!!!!!!!!', this.get('currentUser', 'language'));
 			return this.get('currentUser.language');
 		} else {
 			return this.getBrowserLanguage();
