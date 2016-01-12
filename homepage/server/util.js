@@ -63,7 +63,9 @@ exports.renderWithGlobalData = function (request, reply, data, view, options) {
 			loginUrl: localSettings.loginUrl,
 			signupUrl: localSettings.signupUrl,
 			avatarUrl: avatarUrl,
-			prod: (process.env.WIKIA_ENVIRONMENT === 'prod'),
+			prod: (process.env.WIKIA_ENVIRONMENT === 'prod') ||
+				  (process.env.WIKIA_ENVIRONMENT === 'preview') ||
+				  (process.env.WIKIA_ENVIRONMENT === 'sandbox'),
 		});
 
 		reply.view(view, combinedData, options);
