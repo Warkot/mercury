@@ -7,6 +7,7 @@ const WikiaInYourLangModel = Ember.Object.extend(LanguagesMixin, {
 
 WikiaInYourLangModel.reopenClass(LanguagesMixin, {
 	/**
+	 * @param {string} userLang
 	 * @returns {Ember.RSVP.Promise}
 	 */
 	load(userLang) {

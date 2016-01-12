@@ -77,6 +77,7 @@ export default Ember.Component.extend(
 		},
 
 		/**
+		 * @param {string} userLang
 		 * @returns {boolean}
 		 */
 		shouldShowWikiaInYourLang(userLang) {
@@ -92,6 +93,7 @@ export default Ember.Component.extend(
 		},
 
 		/**
+		 * @param {string} userLang
 		 * @return {boolean}
 		 */
 		isUserLangDifferentFromWikiLang(userLang) {
