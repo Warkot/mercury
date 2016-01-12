@@ -102,7 +102,14 @@ function search() : void {
 	}
 
 	if (searchText) {
+		console.log(`searchText = ${searchText}`);
+		console.log(`optimizelyId = ${optimizelyId}`);
+		console.log(`window.optimizely.variationMap[optimizelyId] = ${window.optimizely.variationMap[optimizelyId]}`);
+		console.log(window.optimizely.variationMap);
+
 		if (window.optimizely.variationMap[optimizelyId] === 1) {
+			console.log('Using google search');
+
 			// Use Google search
 			searchUrl = `/search?q=${searchText}`;
 
@@ -110,12 +117,14 @@ function search() : void {
 
 			window.location.href = searchUrl;
 		} else {
+			console.log('using oasis search');
+
 			// Use Oasis search
 			searchUrl = 'http://ja.wikia.com/Special:Search?search=';
 			searchUrl += searchText;
 			searchUrl += '&fulltext=Search&resultsLang=ja';
 
-			window.location.href = searchUrl;
+			//window.location.href = searchUrl;
 		}
 	}
 }
