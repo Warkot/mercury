@@ -12,7 +12,7 @@
     "setup-server": "cd server && npm install",
     "//": "BUILD SCRIPTS",
     "build-dev": "rm -rf www && gulp build-common && gulp build-auth && cd front/main && ember build && cd ../.. && gulp build-server",
-    "build": "rm -rf www && gulp build-common --type prod && gulp build-auth --type prod && cd front/main && ember build --environment=production && cd ../.. && gulp build-server --type prod",
+    "build": "npm run setup && rm -rf www && gulp build-common --type prod && gulp build-auth --type prod && cd front/main && ember build --environment=production && cd ../.. && gulp build-server --type prod",
     "//": "DEVELOPMENT SCRIPTS",
     "start": "nodemon --delay 2",
     "dev": "rm -rf www && gulp build-common && gulp build-auth && gulp build-server && npm-run-all --parallel watch-auth watch-common watch-main watch-server start",
