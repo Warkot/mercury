@@ -52,12 +52,6 @@
 		{{#if isDetailsView}}
 			{{share-feature sharedUrl=sharedUrl}}
 		{{else}}
-			{{share-feature
-				sharedUrl=sharedUrl
-				isVisible=isShareFeatureVisible
-				onMouseEnter=(action 'cancelHideShareComponent')
-				onMouseLeave=(action 'hideShareComponent')
-			}}
 			<span class="toggle-share-area" id="share-{{post.id}}">
 				{{svg 'share' class='icon toggle-share'}}
 			</span>
